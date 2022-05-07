@@ -11,20 +11,21 @@
 в том порядке, в котором они встречаются в списке.
 '''
 
-a = '1 2 2 3 3 3 4 6 3 7'.split()
+a = '1 2 2 3 3 3 4 6 3 7 5'.split()
+a = [int(el) for el in a]
 one = []
-more = []
+more = set()
+
 for el in a:
     print(a)
-    if el in one:
-        more.append(el)
-        one.remove(el)
-        print('IN', one, more)
-    else:
-        if el not in more:
-            one.append(el)
-            print('NOT', one, more)
+    if el not in one and el not in more:
+        one.append(el)
+        print('NOT', one, more)
+    elif el not in more:
+        print('in', one, more)
+        more.add(el)
     print()
 print()
-print(' '.join(one))
-print(more)
+for el in one:
+    if el not in more:
+        print(el, end=' ')
