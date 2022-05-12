@@ -36,9 +36,6 @@ class Matrix:
         self.rows = []
         for lst in lists:
             self.rows.append(lst)
-
-    def __str__(self):
-        #print('__str__')
         result = ''
         for i, row in enumerate(self.rows):
             for j, el in enumerate(row):
@@ -47,7 +44,11 @@ class Matrix:
                     result += '\t'
             if i != self.num_of_rows - 1:
                 result += '\n'
-        return result
+        self.rows_as_text = result
+
+    def __str__(self):
+        #print('__str__')
+        return self.rows_as_text
 
     def size(self):
         result = (self.num_of_rows, self.num_of_cols)
