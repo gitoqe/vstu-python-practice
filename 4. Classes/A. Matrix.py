@@ -15,42 +15,52 @@ from sys import stdin
 Метод size без аргументов, возвращающий кортеж вида (число строк, число столбцов).
 Пример теста с участием этого метода есть в следующей задаче этой недели.
 '''
-
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class Matrix:
     def __init__(self, lists):
-        print('\n__init__:', lists)
-        print('№ of lists:', len(lists))
+        #print('\n__init__:', lists)
+        self.num_of_rows = len(lists)
+        #print('rows:', self.num_of_rows)
+        self.num_of_cols = len(lists[0])
+        #print('cols:', self.num_of_cols)
         self.rows = []
         for lst in lists:
-            #print(lst)
             self.rows.append(lst)
-        #print('list size:', len(self.rows[0]))
-        print(lst)
 
     def __str__(self):
-        print('__str__')
+        #print('__str__')
         result = ''
         for i, row in enumerate(self.rows):
             for j, el in enumerate(row):
                 result += str(el)
-                if j != len(row):
+                if j != self.num_of_cols - 1:
                     result += '\t'
-            if i - 1 != len(self.rows):
+            if i != self.num_of_rows - 1:
                 result += '\n'
         return result
 
     def size(self):
-        return ()
+        result = (self.num_of_rows, self.num_of_cols)
+        return result
 
 print('Test1:')
 # Task 1 check 1
 m = Matrix([[1, 0], [0, 1]])
-print(m)
+print(bcolors.WARNING, m, bcolors.ENDC)
 m = Matrix([[2, 0, 0], [0, 1, 10000]])
-print(m)
+print(bcolors.WARNING, m, bcolors.ENDC)
 m = Matrix([[-10, 20, 50, 2443], [-5235, 12, 4324, 4234]])
-print(m)
+print(bcolors.WARNING, m, bcolors.ENDC)
 # 1	0
 # 0	1
 # 2	0	0
@@ -59,19 +69,19 @@ print(m)
 # -5235	12	4324	4234
 
 
-print('\n\nTest2:')
+print('\nTest2:')
 # Task 1 check 2
 m1 = Matrix([[1, 0, 0], [1, 1, 1], [0, 0, 0]])
 m2 = Matrix([[1, 0, 0], [1, 1, 1], [0, 0, 0]])
-print(str(m1) == str(m2))
+print(bcolors.WARNING, str(m1) == str(m2), bcolors.ENDC)
 # True
 print(m1)
 
 
-print('\n\nTest3:')
+print('\nTest3:')
 # Task 1 check 3
 m = Matrix([[1, 1, 1], [0, 100, 10]])
-print(str(m) == '1\t1\t1\n0\t100\t10')
+print(bcolors.WARNING, str(m) == '1\t1\t1\n0\t100\t10', bcolors.ENDC)
 # True
 
 print(m)
