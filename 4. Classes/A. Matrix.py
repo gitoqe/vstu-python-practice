@@ -15,6 +15,8 @@ from sys import stdin
 Метод size без аргументов, возвращающий кортеж вида (число строк, число столбцов).
 Пример теста с участием этого метода есть в следующей задаче этой недели.
 '''
+
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -26,33 +28,34 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 class Matrix:
     def __init__(self, lists):
-        #print('\n__init__:', lists)
-        self.num_of_rows = len(lists)
-        #print('rows:', self.num_of_rows)
-        self.num_of_cols = len(lists[0])
-        #print('cols:', self.num_of_cols)
-        self.rows = []
-        for lst in lists:
-            self.rows.append(lst)
-        result = ''
-        for i, row in enumerate(self.rows):
-            for j, el in enumerate(row):
-                result += str(el)
-                if j != self.num_of_cols - 1:
-                    result += '\t'
-            if i != self.num_of_rows - 1:
-                result += '\n'
-        self.rows_as_text = result
+        self.rows = lists
+        self.num_of_rows = len(self.rows)
+        self.num_of_cols = len(self.rows[0])
+        self.rows_as_text = False
 
     def __str__(self):
-        #print('__str__')
+        if not self.rows_as_text:
+            self.rows_as_text = self.make_text()
         return self.rows_as_text
 
     def size(self):
         result = (self.num_of_rows, self.num_of_cols)
         return result
+
+    def make_text(self):
+        result = ''
+        for row in range(self.num_of_rows):
+            for col in range(self.num_of_cols):
+                result += str(self.rows[row][col])
+                if col != self.num_of_cols - 1:
+                    result += '\t'
+            if row != self.num_of_rows - 1:
+                result += '\n'
+        return result
+
 
 print('Test1:')
 # Task 1 check 1
