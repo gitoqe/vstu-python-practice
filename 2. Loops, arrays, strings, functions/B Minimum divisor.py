@@ -15,8 +15,7 @@ else:
     i = 3
     while (i * i <= num) and (num % i != 0):
         i += 2
-
-    if (i * i <= num):
+    if i * i <= num:
         answer = i
     else:
         answer = num

@@ -22,9 +22,10 @@ class Matrix(object):
         self.matrix = deepcopy(matrix)
 
     def __str__(self):
-        return '\n'.join('\t'.join(map(str,row)) for row in self.matrix)
+        return '\n'.join('\t'.join(map(str, row)) for row in self.matrix)
 
     def size(self):
         return (len(self.matrix), len(self.matrix[0]))
+
 
 exec(stdin.read())

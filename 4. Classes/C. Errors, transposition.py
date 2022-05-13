@@ -16,6 +16,7 @@ Matrix([[0, 1], [1, 0]) * 10.
 Разумеется, данные методы не должны менять содержимое матрицы.
 '''
 
+
 from sys import stdin
 from copy import deepcopy
 
@@ -31,19 +32,19 @@ class Matrix(object):
         self.matrix = deepcopy(matrix)
 
     def __str__(self):
-        return '\n'.join('\t'.join(map(str,row)) for row in self.matrix)
+        return '\n'.join('\t'.join(map(str, row)) for row in self.matrix)
 
     def size(self):
         return (len(self.matrix), len(self.matrix[0]))
 
     def __add__(self, other):
         if len(self.matrix) == len(other.matrix):
-            lenght = len(self.matrix[0])
+            length = len(self.matrix[0])
             for row in self.matrix:
-                if len(row) != lenght:
+                if len(row) != length:
                     raise MatrixError(self, other)
             for row2 in other.matrix:
-                if len(row2) != lenght:
+                if len(row2) != length:
                     raise MatrixError(self, other)
             result = []
             numbers = []
@@ -74,5 +75,6 @@ class Matrix(object):
     def transposed(self):
         trans_matrix = list(zip(*self.matrix))
         return Matrix(trans_matrix)
+
 
 exec(stdin.read())
